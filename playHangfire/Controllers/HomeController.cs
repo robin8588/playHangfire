@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Hangfire;
+using Hangfire.Common;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,7 +26,8 @@ namespace playHangfire.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+            BackgroundJob.Enqueue(() => Debug.WriteLine("hello world") );
+            RecurringJob.AddOrUpdate("Hi",()=> Debug.WriteLine("Hi"),Cron.Minutely);
             return View();
         }
     }

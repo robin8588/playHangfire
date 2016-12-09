@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using Hangfire;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(playHangfire.Startup))]
@@ -9,6 +10,7 @@ namespace playHangfire
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            ConfigureHangfire(app);
         }
     }
 }
